@@ -19,6 +19,8 @@ jobs:
           script: |
             cd /root/KirisameNoSato/
             git pull origin deploy
+            source ~/.nvm/nvm.sh
+            nvm use 22
             npm install
             npm run build
             cd /var/www/kirisamenosato && rm -rf .[^.]* * 2>/dev/null || true

@@ -29,7 +29,13 @@
 				url: 'https://github.com/kirisamevanilla',
 				icon: '🌐',
 				desc: '项目开源仓库'
-			}
+			},
+            {
+                name: 'KirisameVanilla\'s Gitea',
+                url: 'https://git.vanillaaaa.org',
+                icon: '🌐',
+                desc: '自托管的 Git 服务，用于存放一些不便于存放的项目'
+            }
 		]
 	};
 </script>

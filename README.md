@@ -1,38 +1,35 @@
-# sv
+# 雾雨之乡
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> [雾雨之乡](https://vanillaaaa.org/)
 
-## Creating a project
+## 项目简介
 
-If you're seeing this, you've probably already done this step. Congrats!
+- 技术栈：Svelte、Vite、TypeScript
 
-```sh
-# create a new project in the current directory
-npx sv create
+## 本地开发
 
-# create a new project in my-app
-npx sv create my-app
-```
+1. 安装依赖：
+   ```sh
+   npm install
+   ```
+2. 启动开发服务器：
+   ```sh
+   npm run dev
+   ```
 
-## Developing
+## 构建与部署
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- 生产环境构建：
+  ```sh
+  npm run build
+  ```
+- 预览生产环境：
+  ```sh
+  npm run preview
+  ```
 
-```sh
-npm run dev
+## 目录结构
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- `src/`：源代码目录
+- `build/`：构建输出目录
+- `static/`：静态资源

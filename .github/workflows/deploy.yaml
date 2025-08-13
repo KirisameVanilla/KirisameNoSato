@@ -1,8 +1,8 @@
 name: deploy
 on:
   push:
-    branches:
-      - deploy
+    paths:
+      - 'package.json'
   workflow_dispatch:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
             cd /root/KirisameNoSato/
-            git pull origin deploy
+            git pull origin master
             source ~/.nvm/nvm.sh
             nvm use 22
             npm install

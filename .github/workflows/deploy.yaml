@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
             cd /root/KirisameNoSato/
-            git pull origin master
+            git reset --hard origin/master
             source ~/.nvm/nvm.sh
             nvm use 22
             npm install

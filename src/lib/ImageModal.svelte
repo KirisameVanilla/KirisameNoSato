@@ -30,8 +30,6 @@
   </button>
 
   {#if showModal}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div
       class="z-50 fixed inset-0 flex justify-center items-center bg-transparent bg-opacity-30 backdrop-blur-sm"
       transition:fade
@@ -41,7 +39,6 @@
       aria-modal="true"
       tabindex="-1"
     >
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <div
         class="flex bg-white shadow-lg p-6 rounded-lg max-w-5xl"
         transition:scale

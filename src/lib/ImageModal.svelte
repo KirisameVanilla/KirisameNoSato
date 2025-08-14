@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade, scale } from 'svelte/transition';
+  import { fade, scale } from "svelte/transition";
 
   export let image: string;
 
@@ -14,7 +14,7 @@
   };
 
   const handleKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       closeModal();
     }
   };
@@ -52,7 +52,7 @@
         <div class="flex-shrink-0 mr-6">
           <img class="rounded-lg w-96 h-auto" src={image} alt="放大图片" />
         </div>
-        
+
         <!-- 右侧：内容和按钮 -->
         <div class="flex flex-col flex-1 justify-between">
           <!-- 右侧顶部的内容区域 -->
@@ -61,7 +61,7 @@
               <!-- 默认内容为空 -->
             </slot>
           </div>
-          
+
           <!-- 右侧底部的关闭按钮 -->
           <div class="w-full">
             <button

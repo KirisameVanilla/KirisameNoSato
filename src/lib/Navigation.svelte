@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Menu, X, Home, User, Mail, Settings, BookOpen } from 'lucide-svelte';
-	import { slide, fade, fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	
 	let isMenuOpen = false;
@@ -91,7 +91,7 @@
 			<div class="mx-auto px-6 py-4 max-w-4xl">
 				<div class="flex justify-center">
 					<div class="gap-4 grid grid-cols-2 md:grid-cols-4 mt-12 w-full max-w-2xl">
-						{#each menuItems as item, index}
+						{#each menuItems as item, index (item.label)}
 							<a
 								href={item.href}
 								on:click={closeMenu}

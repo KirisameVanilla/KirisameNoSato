@@ -5,6 +5,14 @@
 	// 博客文章列表（你可以从这里添加你的博客文章）
 	const blogPosts = [
 		{
+			id: 'deploy-guide',
+			title: '项目构建与部署指南',
+			description: '详细介绍如何构建项目并部署到生产环境，包括 Nginx 配置和 HTTPS 设置。',
+			date: '2025-01-20',
+			readTime: '10 分钟',
+			tags: ['部署', 'Nginx', 'DevOps', 'HTTPS']
+		},
+		{
 			id: 'hello-world',
 			title: '我的第一篇博客',
 			description: '欢迎来到我的博客！这是我的第一篇文章，在这里我会分享一些技术文章和生活感悟。',

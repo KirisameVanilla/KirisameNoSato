@@ -8,29 +8,28 @@
 			title: "项目构建与部署指南",
 			description:
 				"详细介绍如何构建项目并部署到生产环境，包括 Nginx 配置和 HTTPS 设置。",
-			date: "2025-01-20",
+			date: "2025-08-14",
 			readTime: "10 分钟",
 			tags: ["部署", "Nginx", "DevOps", "HTTPS"],
-		},
-		{
-			id: "hello-world",
-			title: "我的第一篇博客",
-			description:
-				"欢迎来到我的博客！这是我的第一篇文章，在这里我会分享一些技术文章和生活感悟。",
-			date: "2025-01-15",
-			readTime: "3 分钟",
-			tags: ["介绍", "Hello World"],
 		},
 		{
 			id: "svelte-tips",
 			title: "SvelteKit 开发小技巧",
 			description:
 				"分享一些在使用 SvelteKit 开发过程中的实用技巧和最佳实践。",
-			date: "2025-01-10",
+			date: "2025-08-14",
 			readTime: "8 分钟",
 			tags: ["SvelteKit", "前端", "技术"],
 		},
-		// 你可以在这里添加更多博客文章
+		{
+			id: "hello-world",
+			title: "我的第一篇博客",
+			description:
+				"欢迎来到我的博客！这是我的第一篇文章，在这里我会分享一些技术文章和生活感悟。",
+			date: "2025-08-14",
+			readTime: "3 分钟",
+			tags: ["介绍", "Hello World"],
+		},
 	];
 
 	// 格式化日期

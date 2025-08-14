@@ -34,6 +34,7 @@ export default ts.config(
 				parser: ts.parser,
 				svelteConfig
 			}
-		}
+		},
+		processor: svelte.processors?.['.svelte']
 	}
 );

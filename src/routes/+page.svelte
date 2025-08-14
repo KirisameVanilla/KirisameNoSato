@@ -1,55 +1,63 @@
-
 <script lang="ts">
-	import { Github, Video, Link, Wrench, Download, Eye, GitBranch, Tv } from 'lucide-svelte';
-	import favicon from '$lib/assets/favicon.png';
-	import { ImageModal } from '$lib'
+	import {
+		Github,
+		Video,
+		Link,
+		Wrench,
+		Download,
+		Eye,
+		GitBranch,
+		Tv,
+	} from "lucide-svelte";
+	import favicon from "$lib/assets/favicon.png";
+	import { ImageModal } from "$lib";
 
 	// 你可以在这里修改你的个人信息和链接
 	const profile = {
-		name: 'KirisameVanilla',
+		name: "KirisameVanilla",
 		avatar: favicon,
-		bio: '桌面应用开发 / 前端开发',
+		bio: "桌面应用开发 / 前端开发",
 		socialLinks: [
 			{
-				name: 'GitHub',
-				url: 'https://github.com/kirisamevanilla',
+				name: "GitHub",
+				url: "https://github.com/kirisamevanilla",
 				icon: Github,
-				desc: '我的 GitHub'
+				desc: "我的 GitHub",
 			},
 			{
-				name: 'BiliBili',
-				url: 'https://space.bilibili.com/281126067',
+				name: "BiliBili",
+				url: "https://space.bilibili.com/281126067",
 				icon: Video,
-				desc: '我的 BiliBili'
-			}
-		]
+				desc: "我的 BiliBili",
+			},
+		],
 	};
 
 	const links = [
 		{
-			name: 'TJA-Tools',
-			url: 'https://tools.taiko.vanillaaaa.org',
+			name: "TJA-Tools",
+			url: "https://tools.taiko.vanillaaaa.org",
 			icon: Wrench,
-			desc: '可视化实时编辑太鼓谱面文件的工具'
+			desc: "可视化实时编辑太鼓谱面文件的工具",
 		},
 		{
-			name: 'TJA-Tatsujin',
-			url: 'https://taiko.vanillaaaa.org',
+			name: "TJA-Tatsujin",
+			url: "https://taiko.vanillaaaa.org",
 			icon: Download,
-			desc: '第三方太鼓谱面下载站'
+			desc: "第三方太鼓谱面下载站",
 		},
 		{
-			name: 'TJA-Viewer',
-			url: 'https://viewer.taiko.vanillaaaa.org',
+			name: "TJA-Viewer",
+			url: "https://viewer.taiko.vanillaaaa.org",
 			icon: Eye,
-			desc: '可视化查看、播放太鼓谱面和音频文件的工具'
+			desc: "可视化查看、播放太鼓谱面和音频文件的工具",
 		},
 		{
-			name: 'Kirisame\'s Gitea',
-			url: 'https://git.vanillaaaa.org',
+			name: "Kirisame's Gitea",
+			url: "https://git.vanillaaaa.org",
 			icon: GitBranch,
-			desc: '自托管的 Git 服务'
-		}
+			desc: "自托管的 Git 服务",
+		},
 	];
 
 	let showSocialMenu = $state(false);
@@ -60,7 +68,7 @@
 	function toggleSocialMenu() {
 		if (isAnimating) return;
 		isAnimating = true;
-		
+
 		if (!showSocialMenu) {
 			// 打开菜单
 			showSocialMenu = true;
@@ -84,7 +92,7 @@
 	function closeSocialMenuInternal() {
 		isAnimating = true;
 		isClosing = true;
-		
+
 		// 等待社交链接收缩动画完成后再隐藏它们
 		setTimeout(() => {
 			showSocialLinks = false;
@@ -111,20 +119,26 @@
 	<meta name="description" content="雾雨之乡 - Kirisame No Sato" />
 </svelte:head>
 
-<main class="flex flex-col justify-center items-center bg-gradient-to-br from-slate-50 to-blue-100 w-screen min-h-screen">
+<main
+	class="flex flex-col justify-center items-center bg-gradient-to-br from-slate-50 to-blue-100 w-screen min-h-screen"
+>
 	<div class="flex flex-col items-center mb-10">
 		<ImageModal image={profile.avatar}>
 			<div slot="content">
 				<p class="mb-3 font-semibold text-gray-800 text-lg">关于头像</p>
-				<p class="mb-4 text-gray-700 text-sm leading-relaxed">这个可爱的魔理沙是我的同学画的</p>
-				
+				<p class="mb-4 text-gray-700 text-sm leading-relaxed">
+					这个可爱的魔理沙是我的同学画的
+				</p>
+
 				<!-- B站链接 -->
-				<div class="flex items-center gap-2 bg-pink-50 hover:bg-pink-100 px-3 py-2 rounded-lg transition-colors">
+				<div
+					class="flex items-center gap-2 bg-pink-50 hover:bg-pink-100 px-3 py-2 rounded-lg transition-colors"
+				>
 					<Tv size={16} class="text-pink-600" />
-					<a 
-						href="https://b23.tv/1lWBMKQ" 
-						target="_blank" 
-						rel="noopener noreferrer" 
+					<a
+						href="https://b23.tv/1lWBMKQ"
+						target="_blank"
+						rel="noopener noreferrer"
 						class="font-medium text-pink-600 hover:text-pink-800 text-sm transition-colors"
 					>
 						音鹤莲的B站
@@ -136,8 +150,13 @@
 		<p class="text-slate-500 text-base">{profile.bio}</p>
 	</div>
 	<div class="flex flex-wrap justify-center gap-6 w-full max-w-2xl">
-		{#each links as link}
-			<a class="flex flex-row items-center gap-4 bg-white hover:bg-blue-50 shadow-md hover:shadow-lg px-6 rounded-xl w-80 h-20 font-medium text-slate-800 text-lg no-underline hover:scale-105 transition-transform duration-150" href={link.url} target="_blank" rel="noopener noreferrer">
+		{#each links as link (link.name)}
+			<a
+				class="flex flex-row items-center gap-4 bg-white hover:bg-blue-50 shadow-md hover:shadow-lg px-6 rounded-xl w-80 h-20 font-medium text-slate-800 text-lg no-underline hover:scale-105 transition-transform duration-150"
+				href={link.url}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<link.icon size={24} class="mr-2 text-slate-600" />
 				<div class="flex flex-col justify-center items-start">
 					<span class="font-semibold text-base">{link.name}</span>
@@ -152,28 +171,32 @@
 <div class="social-float-container">
 	<!-- 背景遮罩 -->
 	{#if showSocialMenu}
-		<button 
-			class="social-backdrop" 
+		<button
+			class="social-backdrop"
 			onclick={closeSocialMenu}
 			tabindex="0"
 			aria-label="关闭社交链接菜单"
-			onkeydown={(e) => e.key === 'Enter' || e.key === ' ' ? closeSocialMenu() : null}
+			onkeydown={(e) =>
+				e.key === "Enter" || e.key === " " ? closeSocialMenu() : null}
 		></button>
 	{/if}
-	
+
 	<!-- 主按钮 -->
-	<button 
-		class="social-main-btn {showSocialMenu ? 'centered' : ''}" 
+	<button
+		class="social-main-btn {showSocialMenu ? 'centered' : ''}"
 		onclick={toggleSocialMenu}
 		disabled={isAnimating}
 	>
 		<Link class="social-icon" size={24} />
 	</button>
-	
+
 	<!-- 社交链接按钮 -->
 	{#if showSocialLinks}
-		{#each profile.socialLinks as socialLink, index}
-			{@const position = getCirclePosition(index, profile.socialLinks.length)}
+		{#each profile.socialLinks as socialLink, index (socialLink.name)}
+			{@const position = getCirclePosition(
+				index,
+				profile.socialLinks.length,
+			)}
 			<a
 				class="social-link-btn {isClosing ? 'closing' : ''}"
 				href={socialLink.url}
@@ -265,13 +288,18 @@
 	}
 
 	.social-link-btn:hover {
-		transform: translate(calc(50% + var(--x)), calc(50% + var(--y))) scale(1.15);
+		transform: translate(calc(50% + var(--x)), calc(50% + var(--y)))
+			scale(1.15);
 		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 	}
 
 	@keyframes fadeIn {
-		from { opacity: 0; }
-		to { opacity: 1; }
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	@keyframes socialLinkAppear {
@@ -280,14 +308,16 @@
 			opacity: 0;
 		}
 		100% {
-			transform: translate(calc(50% + var(--x)), calc(50% + var(--y))) scale(1);
+			transform: translate(calc(50% + var(--x)), calc(50% + var(--y)))
+				scale(1);
 			opacity: 1;
 		}
 	}
 
 	@keyframes socialLinkDisappear {
 		0% {
-			transform: translate(calc(50% + var(--x)), calc(50% + var(--y))) scale(1);
+			transform: translate(calc(50% + var(--x)), calc(50% + var(--y)))
+				scale(1);
 			opacity: 1;
 		}
 		100% {
@@ -296,5 +326,3 @@
 		}
 	}
 </style>
-
-

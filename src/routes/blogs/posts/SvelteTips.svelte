@@ -1,17 +1,17 @@
-<!-- SvelteKit 开发小技巧 -->
-<script lang="ts">
-	import { Calendar, Clock, Tag } from "lucide-svelte";
-	import { onMount } from "svelte";
-
-	// 文章元数据
-	const meta = {
+<script context="module" lang="ts">
+	export const metadata = {
 		title: "SvelteKit 开发小技巧",
 		description:
 			"分享一些在使用 SvelteKit 开发过程中的实用技巧和最佳实践。",
-		date: "2025-01-10",
-		readTime: "8 分钟",
+		date: "2025-08-14",
+		readTime: "5 分钟",
 		tags: ["SvelteKit", "前端", "技术"],
 	};
+</script>
+
+<script lang="ts">
+	import { Calendar, Clock, Tag } from "lucide-svelte";
+	import { onMount } from "svelte";
 
 	// 交互式演示变量
 	let count = 0;
@@ -48,18 +48,18 @@
 		<div class="flex items-center space-x-4 text-gray-500 text-sm">
 			<div class="flex items-center">
 				<Calendar class="mr-2 w-4 h-4" />
-				<span>{formatDate(meta.date)}</span>
+				<span>{formatDate(metadata.date)}</span>
 			</div>
 			<div class="flex items-center">
 				<Clock class="mr-2 w-4 h-4" />
-				<span>{meta.readTime}</span>
+				<span>{metadata.readTime}</span>
 			</div>
 		</div>
 	</div>
 
 	<!-- 标签 -->
 	<div class="flex flex-wrap gap-2 mb-6">
-		{#each meta.tags as tag (tag)}
+		{#each metadata.tags as tag (tag)}
 			<span
 				class="flex items-center bg-blue-50 px-3 py-1 rounded-full font-medium text-blue-600 text-sm"
 			>

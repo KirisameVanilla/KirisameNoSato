@@ -1,4 +1,14 @@
-<!-- 项目构建与部署指南 -->
+<script context="module" lang="ts">
+    export const metadata = {
+        title: "项目构建与部署指南",
+        description:
+            "详细介绍如何构建项目并部署到生产环境，包括 Nginx 配置和 HTTPS 设置。",
+        date: "2025-08-14",
+        readTime: "10 分钟",
+        tags: ["部署", "Nginx", "HTTPS"],
+    };
+</script>
+
 <script lang="ts">
     import {
         Calendar,
@@ -10,17 +20,6 @@
         Server,
         Shield,
     } from "lucide-svelte";
-    import { onMount } from "svelte";
-
-    // 文章元数据
-    const meta = {
-        title: "项目构建与部署指南",
-        description:
-            "详细介绍如何构建项目并部署到生产环境，包括 Nginx 配置和 HTTPS 设置。",
-        date: "2025-01-20",
-        readTime: "10 分钟",
-        tags: ["部署", "Nginx", "DevOps", "HTTPS"],
-    };
 
     // 交互式复制功能
     let copiedStates: { [key: string]: boolean } = {};
@@ -81,10 +80,6 @@ sudo certbot --nginx -d your-domain.com
 # 测试自动续期
 sudo certbot renew --dry-run`,
     };
-
-    onMount(() => {
-        console.log("部署指南文章已加载");
-    });
 </script>
 
 <!-- 文章头部信息 -->
@@ -93,18 +88,18 @@ sudo certbot renew --dry-run`,
         <div class="flex items-center space-x-4 text-gray-500 text-sm">
             <div class="flex items-center">
                 <Calendar class="mr-2 w-4 h-4" />
-                <span>{formatDate(meta.date)}</span>
+                <span>{formatDate(metadata.date)}</span>
             </div>
             <div class="flex items-center">
                 <Clock class="mr-2 w-4 h-4" />
-                <span>{meta.readTime}</span>
+                <span>{metadata.readTime}</span>
             </div>
         </div>
     </div>
 
     <!-- 标签 -->
     <div class="flex flex-wrap gap-2 mb-6">
-        {#each meta.tags as tag (tag)}
+        {#each metadata.tags as tag (tag)}
             <span
                 class="flex items-center bg-green-50 px-3 py-1 rounded-full font-medium text-green-600 text-sm"
             >

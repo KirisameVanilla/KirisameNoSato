@@ -2,12 +2,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Github, Video, Link, Wrench, Download, Eye, GitBranch, Tv } from 'lucide-svelte';
+	import favicon from '$lib/assets/favicon.png';
 	import ImageModal from '$lib/ImageModal.svelte'
 
 	// 你可以在这里修改你的个人信息和链接
 	const profile = {
 		name: 'Kirisame Vanilla',
-		avatar: '/favicon.jpg',
+		avatar: favicon,
 		bio: '桌面应用开发 / 前端开发',
 		socialLinks: [
 			{

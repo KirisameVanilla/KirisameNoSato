@@ -1,36 +1,7 @@
 <script lang="ts">
 	import { Calendar, Clock, ArrowRight } from "lucide-svelte";
-
-	// 博客文章列表（你可以从这里添加你的博客文章）
-	const blogPosts = [
-		{
-			id: "deploy-guide",
-			title: "项目构建与部署指南",
-			description:
-				"详细介绍如何构建项目并部署到生产环境，包括 Nginx 配置和 HTTPS 设置。",
-			date: "2025-08-14",
-			readTime: "10 分钟",
-			tags: ["部署", "Nginx", "DevOps", "HTTPS"],
-		},
-		{
-			id: "svelte-tips",
-			title: "SvelteKit 开发小技巧",
-			description:
-				"分享一些在使用 SvelteKit 开发过程中的实用技巧和最佳实践。",
-			date: "2025-08-14",
-			readTime: "8 分钟",
-			tags: ["SvelteKit", "前端", "技术"],
-		},
-		{
-			id: "hello-world",
-			title: "我的第一篇博客",
-			description:
-				"欢迎来到我的博客！这是我的第一篇文章，在这里我会分享一些技术文章和生活感悟。",
-			date: "2025-08-14",
-			readTime: "3 分钟",
-			tags: ["介绍", "Hello World"],
-		},
-	];
+	import type { PageData } from './$types';
+	export let data: PageData;
 
 	// 格式化日期
 	function formatDate(dateString: string) {
@@ -60,7 +31,7 @@
 
 		<!-- 博客文章列表 -->
 		<div class="space-y-6 w-full max-w-4xl">
-			{#each blogPosts as post (post.id)}
+			{#each data.posts as post (post.slug)}
 				<article
 					class="group bg-white/80 hover:bg-white shadow-md hover:shadow-lg backdrop-blur-sm p-6 border border-gray-200/50 rounded-xl transition-all duration-300"
 				>
@@ -69,7 +40,7 @@
 						<h2
 							class="mb-3 font-semibold text-gray-900 group-hover:text-blue-600 text-xl transition-colors"
 						>
-							<a href="/blogs/{post.id}" class="hover:underline">
+							<a href="/blogs/{post.slug}" class="hover:underline">
 								{post.title}
 							</a>
 						</h2>
@@ -88,10 +59,12 @@
 									<Calendar class="mr-1 w-4 h-4" />
 									<span>{formatDate(post.date)}</span>
 								</div>
+								{#if post.readTime}
 								<div class="flex items-center">
 									<Clock class="mr-1 w-4 h-4" />
 									<span>{post.readTime}</span>
 								</div>
+								{/if}
 							</div>
 						</div>
 
@@ -109,7 +82,7 @@
 
 							<!-- 阅读更多链接 -->
 							<a
-								href="/blogs/{post.id}"
+								href="/blogs/{post.slug}"
 								class="flex items-center text-blue-600 hover:text-blue-700 transition-all group-hover:translate-x-1 duration-200"
 							>
 								<span class="mr-1 text-sm">阅读更多</span>
@@ -122,7 +95,7 @@
 		</div>
 
 		<!-- 如果没有文章的提示 -->
-		{#if blogPosts.length === 0}
+		{#if !data.posts || data.posts.length === 0}
 			<div
 				class="bg-white/80 backdrop-blur-sm p-12 border border-gray-200/50 rounded-xl text-center"
 			>

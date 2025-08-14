@@ -1,16 +1,16 @@
-<!-- 我的第一篇博客 - Hello World -->
-<script lang="ts">
-	import { Calendar, Clock, Tag } from "lucide-svelte";
-
-	// 文章元数据
-	const meta = {
+<script context="module" lang="ts">
+	export const metadata = {
 		title: "我的第一篇博客",
 		description:
 			"欢迎来到我的博客！这是我的第一篇文章，在这里我会分享一些技术文章和生活感悟。",
-		date: "2025-01-15",
+		date: "2025-08-14",
 		readTime: "3 分钟",
 		tags: ["介绍", "Hello World"],
 	};
+</script>
+
+<script lang="ts">
+	import { Calendar, Clock, Tag } from "lucide-svelte";
 
 	// 格式化日期
 	function formatDate(dateString: string) {
@@ -29,18 +29,18 @@
 		<div class="flex items-center space-x-4 text-gray-500 text-sm">
 			<div class="flex items-center">
 				<Calendar class="mr-2 w-4 h-4" />
-				<span>{formatDate(meta.date)}</span>
+				<span>{formatDate(metadata.date)}</span>
 			</div>
 			<div class="flex items-center">
 				<Clock class="mr-2 w-4 h-4" />
-				<span>{meta.readTime}</span>
+				<span>{metadata.readTime}</span>
 			</div>
 		</div>
 	</div>
 
 	<!-- 标签 -->
 	<div class="flex flex-wrap gap-2 mb-6">
-		{#each meta.tags as tag (tag)}
+		{#each metadata.tags as tag (tag)}
 			<span
 				class="flex items-center bg-blue-50 px-3 py-1 rounded-full font-medium text-blue-600 text-sm"
 			>

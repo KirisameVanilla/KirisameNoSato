@@ -1,9 +1,8 @@
 
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { Github, Video, Link, Wrench, Download, Eye, GitBranch, Tv } from 'lucide-svelte';
 	import favicon from '$lib/assets/favicon.png';
-	import ImageModal from '$lib/ImageModal.svelte'
+	import { ImageModal } from '$lib'
 
 	// 你可以在这里修改你的个人信息和链接
 	const profile = {

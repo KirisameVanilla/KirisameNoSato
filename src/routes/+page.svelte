@@ -6,7 +6,7 @@
 
 	// 你可以在这里修改你的个人信息和链接
 	const profile = {
-		name: 'Kirisame Vanilla',
+		name: 'KirisameVanilla',
 		avatar: favicon,
 		bio: '桌面应用开发 / 前端开发',
 		socialLinks: [
@@ -106,6 +106,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>雾雨之乡</title>
+	<meta name="description" content="雾雨之乡 - Kirisame No Sato" />
+</svelte:head>
 
 <main class="flex flex-col justify-center items-center bg-gradient-to-br from-slate-50 to-blue-100 w-screen min-h-screen">
 	<div class="flex flex-col items-center mb-10">

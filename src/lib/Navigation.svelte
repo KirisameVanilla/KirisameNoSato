@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menu, X, Home, User, Mail, Settings } from 'lucide-svelte';
+	import { Menu, X, Home, User, Mail, Settings, BookOpen } from 'lucide-svelte';
 	import { slide, fade, fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	
@@ -19,6 +19,11 @@
 			label: '首页',
 			href: '/',
 			icon: Home
+		},
+		{
+			label: '博客',
+			href: '/blogs',
+			icon: BookOpen
 		},
 		{
 			label: '关于',

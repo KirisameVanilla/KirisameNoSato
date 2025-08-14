@@ -18,6 +18,7 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
             cd /root/KirisameNoSato/
+            git fetch
             git reset --hard origin/master
             source ~/.nvm/nvm.sh
             nvm use 22

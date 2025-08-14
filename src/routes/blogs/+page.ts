@@ -17,5 +17,20 @@ export const load: PageLoad = async () => {
   );
   // 按日期降序排序（假设 metadata 里有 date 字段）
   posts.sort((a, b) => (b.date && a.date) ? new Date(b.date).getTime() - new Date(a.date).getTime() : 0);
-  return { posts };
+  // 统计所有 tags 及其出现次数
+  const tagMap: Record<string, number> = {};
+  posts.forEach(post => {
+    if (Array.isArray(post.tags)) {
+      post.tags.forEach((tag: string) => {
+        tagMap[tag] = (tagMap[tag] || 0) + 1;
+      });
+    }
+  });
+  const tags = Object.keys(tagMap);
+  // 出现次数最多的前5个tag
+  const topTags = tags
+    .map(tag => ({ tag, count: tagMap[tag] }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+  return { posts, tags, topTags };
 };

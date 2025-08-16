@@ -38,7 +38,7 @@
 	<meta name="description" content="技术文章和生活感悟分享" />
 </svelte:head>
 
-<div class="bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
+<div class="bg-gradient-to-br from-slate-50 to-blue-100 min-h-screen">
 	<div
 		class="flex md:flex-row flex-col justify-center items-start gap-8 mx-auto px-6 py-20 max-w-5xl min-h-screen"
 	>

@@ -2,6 +2,7 @@
   import { fade, scale } from "svelte/transition";
 
   export let image: string;
+  export let thumbnail: string | null = null;
 
   let showModal = false;
 
@@ -24,7 +25,7 @@
   <button class="focus:outline-none" on:click={openModal}>
     <img
       class="shadow border-2 border-blue-100 rounded-full w-24 h-24 cursor-pointer"
-      src={image}
+      src={thumbnail || image}
       alt="点击查看大图"
     />
   </button>
@@ -47,7 +48,7 @@
       >
         <!-- 左侧：图片 -->
         <div class="flex-shrink-0 mr-6">
-          <img class="rounded-lg w-96 h-auto" src={image} alt="放大图片" />
+          <img class="rounded-lg w-96 h-auto" src={image} alt="放大图片" loading="lazy" />
         </div>
 
         <!-- 右侧：内容和按钮 -->

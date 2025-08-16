@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menu, X, Home, User, Mail, Settings, BookOpen } from 'lucide-svelte';
+	import { Menu, X, Home, User, Mail, Settings, BookOpen, Github } from 'lucide-svelte';
 	import { fade, fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	
@@ -39,6 +39,11 @@
 			label: '设置',
 			href: '/settings',
 			icon: Settings
+		},
+		{
+			label: '源码',
+			href: 'https://github.com/kirisamevanilla/kirisamenosato',
+			icon: Github
 		}
 	];
 </script>

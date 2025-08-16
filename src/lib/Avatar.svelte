@@ -1,10 +1,11 @@
 <script>
     import { ImageModal } from "$lib";
     import { Tv } from "lucide-svelte";
-    import avatar from "$lib/assets/favicon.png";
+    import avatar from "$lib/assets/images/full/favicon.png";
+    import avatarThumb from "$lib/assets/images/thumbnail/favicon.png";
 </script>
 
-<ImageModal image={avatar}>
+<ImageModal image={avatar} thumbnail={avatarThumb}>
     <div slot="content">
         <p class="mb-3 font-semibold text-gray-800 text-lg">关于头像</p>
         <p class="mb-4 text-gray-700 text-sm leading-relaxed">

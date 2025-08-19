@@ -1,7 +1,7 @@
 import type { PageLoad } from './$types';
 
-// 动态导入所有 posts 目录下的 svelte 文件
-const modules = import.meta.glob('../blogs/posts/*.svelte');
+// 动态导入所有 posts 目录下的 svelte 和 md 文件
+const modules = import.meta.glob('../blogs/posts/*.{svelte,md}');
 
 export const load: PageLoad = async () => {
   const posts = await Promise.all(
@@ -11,7 +11,7 @@ export const load: PageLoad = async () => {
       return {
         ...mod.metadata,
         // 生成 slug 方便跳转
-        slug: path.split('/').pop()?.replace('.svelte', '')
+        slug: path.split('/').pop()?.replace(/\.(svelte|md)$/, '')
       };
     })
   );

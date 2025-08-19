@@ -17,9 +17,10 @@
 			day: "numeric",
 		});
 	}
-
+	console.log(data.posts);
 	// 过滤后的博客
 	$: filteredPosts = data.posts.filter((post) => {
+		console.log(post);
 		const keyword = search.trim().toLowerCase();
 		const matchTag = selectedTag ? post.tags?.includes(selectedTag) : true;
 		const matchText =

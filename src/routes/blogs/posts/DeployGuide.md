@@ -66,15 +66,16 @@ sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com`;
 
 SvelteKit 是一个出色的全栈 Web 框架，但在生产环境中正确部署需要一些配置技巧。本文将详细介绍如何在 Linux 服务器上使用 Nginx 部署 SvelteKit 应用，并配置 HTTPS 证书。
 
-## 🏗️ 构建准备
+## 构建准备
 
 在部署之前，我们需要先在本地构建项目：
 
 <CodeBlock code={buildCommand} language="bash" title="构建 SvelteKit 项目" />
 
-> 📝 **提示**：构建完成后，所有静态文件都会生成在 `build/` 目录中。这就是我们需要上传到服务器的内容。
+> **提示**：构建完成后，所有静态文件都会生成在 `build/` 目录中。这就是我们需要上传到服务器的内容。
 
-## 🚀 服务器环境搭建
+
+## 服务器环境搭建
 
 ### 基础环境要求
 
@@ -104,48 +105,51 @@ SvelteKit 是一个出色的全栈 Web 框架，但在生产环境中正确部�
 
 <CodeBlock code={enableSite} language="bash" title="启用 Nginx 站点" />
 
-### 🔒 HTTPS 配置
+### HTTPS 配置
 
 使用 Let's Encrypt 免费 SSL 证书为网站启用 HTTPS，提供安全加密连接。
 
 <CodeBlock code={certbot} language="bash" title="Let's Encrypt HTTPS 配置" />
 
-> 💡 **小贴士**：Certbot 会自动修改 Nginx 配置，添加 SSL 相关设置并设置 HTTP 到 HTTPS 的重定向。
+> **小贴士**：Certbot 会自动修改 Nginx 配置，添加 SSL 相关设置并设置 HTTP 到 HTTPS 的重定向。
 
-### 📋 部署清单
+
+### 部署清单
 
 按照以下步骤完成完整的部署流程：
 
-**🔢 部署步骤**
+**部署步骤**
 
-- [ ] 1. 在本地运行 `npm run build` 构建项目
-- [ ] 2. 将 `build/` 目录上传到服务器 `/var/www/kirisame-nosato/`
-- [ ] 3. 创建并配置 Nginx 站点配置文件
-- [ ] 4. 启用 Nginx 站点并重新加载配置
-- [ ] 5. 使用 Certbot 申请和配置 SSL 证书
-- [ ] 6. 测试网站访问和 HTTPS 重定向
+1. 在本地运行 `npm run build` 构建项目。
+2. 将 `build/` 目录上传到服务器，放在 `/var/www/kirisame-nosato/` 下并确认文件权限（例如 `chmod -R 755 /var/www/kirisame-nosato`）。
+3. 在服务器上创建并配置 Nginx 站点配置文件。
+4. 启用站点并重新加载 Nginx 配置：
+5. 使用 Certbot 申请并配置 SSL 证书（Certbot 可自动更新 Nginx 配置以启用 HTTPS）：
+6. 测试网站访问、HTTPS 是否生效以及是否有 HTTP 到 HTTPS 的重定向。
 
-### 🚨 常见问题排查
 
-**⚠️ 问题：404 错误**
+### 常见问题排查
+
+**问题：404 错误**
 
 如果刷新页面时出现 404 错误，检查 Nginx 配置中的 `try_files` 指令是否正确。
 
 **解决方案**：确保 `try_files $uri $uri/ /index.html;` 配置正确。
 
-**🔥 问题：静态资源加载失败**
+**问题：静态资源加载失败**
 
 如果 CSS、JS 文件加载失败，可能是路径或权限问题。
 
 **解决方案**：检查文件权限 `chmod -R 755 /var/www/kirisame-nosato`
 
-### 🎯 总结
+
+### 总结
 
 通过以上配置，你的 SvelteKit 项目就可以在生产环境中稳定运行了。这个配置提供了：
 
-- 🚀 **高性能**：Nginx 提供快速的静态文件服务
-- 📱 **SPA 支持**：正确处理前端路由
-- 💾 **缓存优化**：静态资源长期缓存
-- 🔒 **安全连接**：自动 HTTPS 和证书续期
+- **高性能**：Nginx 提供快速的静态文件服务
+- **SPA 支持**：正确处理前端路由
+- **缓存优化**：静态资源长期缓存
+- **安全连接**：自动 HTTPS 和证书续期
 
-> 💡 **提示**：记得定期更新服务器和证书，保持系统安全性。你可以设置自动化部署脚本来简化未来的更新流程。
+> **提示**：记得定期更新服务器和证书，保持系统安全性。你可以设置自动化部署脚本来简化未来的更新流程。

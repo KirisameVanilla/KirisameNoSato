@@ -92,108 +92,119 @@
 		</aside>
 
 		<!-- 右侧内容 -->
-		<main class="flex-1 mx-auto w-full max-w-3xl">
-			<div class="flex sm:flex-row flex-col sm:items-center gap-4 mb-8">
-				<input
-					type="text"
-					class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 w-full sm:w-80"
-					placeholder="搜索标题、描述或标签..."
-					bind:value={search}
-				/>
-				{#if selectedTag}
-					<button
-						class="bg-blue-100 ml-2 px-3 py-1 border border-blue-200 rounded font-medium text-blue-700 text-xs"
-						on:click={() => (selectedTag = null)}
-					>
-						清除标签: {selectedTag}
-					</button>
-				{/if}
-			</div>
+		   <main class="flex-1 mx-auto w-full max-w-3xl">
+			   <div class="blog-scroll-container">
+				   <div class="flex sm:flex-row flex-col sm:items-center gap-4 mb-8">
+					   <input
+						   type="text"
+						   class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 w-full sm:w-80"
+						   placeholder="搜索标题、描述或标签..."
+						   bind:value={search}
+					   />
+					   {#if selectedTag}
+						   <button
+							   class="bg-blue-100 ml-2 px-3 py-1 border border-blue-200 rounded font-medium text-blue-700 text-xs"
+							   on:click={() => (selectedTag = null)}
+						   >
+							   清除标签: {selectedTag}
+						   </button>
+					   {/if}
+				   </div>
 
-			<!-- 博客文章列表 -->
-			<div class="space-y-6">
-				{#each filteredPosts as post (post.slug)}
-					<article
-						class="group bg-white/80 hover:bg-white shadow-md hover:shadow-lg backdrop-blur-sm p-6 border border-gray-200/50 rounded-xl transition-all duration-300"
-					>
-						<div class="flex flex-col">
-							<!-- 文章标题 -->
-							<h2
-								class="mb-3 font-semibold text-gray-900 group-hover:text-blue-600 text-xl transition-colors"
-							>
-								<a
-									href="/blogs/{post.slug}"
-									class="hover:underline">{post.title}</a
-								>
-							</h2>
-							<!-- 文章描述 -->
-							<p class="mb-4 text-gray-600 leading-relaxed">
-								{post.description}
-							</p>
-							<!-- 文章元数据 -->
-							<div
-								class="flex justify-between items-center mb-4 text-gray-500 text-sm"
-							>
-								<div class="flex items-center space-x-4">
-									<div class="flex items-center">
-										<Calendar class="mr-1 w-4 h-4" />
-										<span>{formatDate(post.date)}</span>
-									</div>
-									{#if post.readTime}
-										<div class="flex items-center">
-											<Clock class="mr-1 w-4 h-4" />
-											<span>{post.readTime}</span>
-										</div>
-									{/if}
-								</div>
-							</div>
-							<!-- 标签 -->
-							<div class="flex justify-between items-center">
-								<div class="flex flex-wrap gap-2">
-									{#each post.tags as tag (tag)}
-										<span
-											class="bg-blue-50 px-2 py-1 rounded-md font-medium text-blue-600 text-xs"
-											>{tag}</span
-										>
-									{/each}
-								</div>
-								<!-- 阅读更多链接 -->
-								<a
-									href="/blogs/{post.slug}"
-									class="flex items-center text-blue-600 hover:text-blue-700 transition-all group-hover:translate-x-1 duration-200"
-								>
-									<span class="mr-1 text-sm">阅读更多</span>
-									<ArrowRight class="w-4 h-4" />
-								</a>
-							</div>
-						</div>
-					</article>
-				{/each}
-			</div>
+				   <!-- 博客文章列表 -->
+				   <div class="space-y-6">
+					   {#each filteredPosts as post (post.slug)}
+						   <article
+							   class="group bg-white/80 hover:bg-white shadow-md hover:shadow-lg backdrop-blur-sm p-6 border border-gray-200/50 rounded-xl transition-all duration-300"
+						   >
+							   <div class="flex flex-col">
+								   <!-- 文章标题 -->
+								   <h2
+									   class="mb-3 font-semibold text-gray-900 group-hover:text-blue-600 text-xl transition-colors"
+								   >
+									   <a
+										   href="/blogs/{post.slug}"
+										   class="hover:underline">{post.title}</a
+									   >
+								   </h2>
+								   <!-- 文章描述 -->
+								   <p class="mb-4 text-gray-600 leading-relaxed">
+									   {post.description}
+								   </p>
+								   <!-- 文章元数据 -->
+								   <div
+									   class="flex justify-between items-center mb-4 text-gray-500 text-sm"
+								   >
+									   <div class="flex items-center space-x-4">
+										   <div class="flex items-center">
+											   <Calendar class="mr-1 w-4 h-4" />
+											   <span>{formatDate(post.date)}</span>
+										   </div>
+										   {#if post.readTime}
+											   <div class="flex items-center">
+												   <Clock class="mr-1 w-4 h-4" />
+												   <span>{post.readTime}</span>
+											   </div>
+										   {/if}
+									   </div>
+								   </div>
+								   <!-- 标签 -->
+								   <div class="flex justify-between items-center">
+									   <div class="flex flex-wrap gap-2">
+										   {#each post.tags as tag (tag)}
+											   <span
+												   class="bg-blue-50 px-2 py-1 rounded-md font-medium text-blue-600 text-xs"
+												   >{tag}</span
+											   >
+										   {/each}
+									   </div>
+									   <!-- 阅读更多链接 -->
+									   <a
+										   href="/blogs/{post.slug}"
+										   class="flex items-center text-blue-600 hover:text-blue-700 transition-all group-hover:translate-x-1 duration-200"
+									   >
+										   <span class="mr-1 text-sm">阅读更多</span>
+										   <ArrowRight class="w-4 h-4" />
+									   </a>
+								   </div>
+							   </div>
+						   </article>
+					   {/each}
+				   </div>
 
-			<!-- 如果没有文章的提示 -->
-			{#if !data.posts || data.posts.length === 0}
-				<div
-					class="bg-white/80 backdrop-blur-sm p-12 border border-gray-200/50 rounded-xl text-center"
-				>
-					<div class="mb-4 text-6xl">📝</div>
-					<h3 class="mb-2 font-semibold text-gray-700 text-xl">
-						暂无博客文章
-					</h3>
-					<p class="text-gray-500">敬请期待更多精彩内容！</p>
-				</div>
-			{/if}
-			{#if data.posts && data.posts.length !== 0 && (!filteredPosts || filteredPosts.length === 0)}
-				<div
-					class="bg-white/80 backdrop-blur-sm p-12 border border-gray-200/50 rounded-xl text-center"
-				>
-					<div class="mb-4 text-6xl">📝</div>
-					<h3 class="mb-2 font-semibold text-gray-700 text-xl">
-						暂无符合条件的博客文章
-					</h3>
-					<p class="text-gray-500">换个关键词或标签试试吧！</p>
-				</div>
-			{/if}
-		</main>
+				   <!-- 如果没有文章的提示 -->
+				   {#if !data.posts || data.posts.length === 0}
+					   <div
+						   class="bg-white/80 backdrop-blur-sm p-12 border border-gray-200/50 rounded-xl text-center"
+					   >
+						   <div class="mb-4 text-6xl">📝</div>
+						   <h3 class="mb-2 font-semibold text-gray-700 text-xl">
+							   暂无博客文章
+						   </h3>
+						   <p class="text-gray-500">敬请期待更多精彩内容！</p>
+					   </div>
+				   {/if}
+				   {#if data.posts && data.posts.length !== 0 && (!filteredPosts || filteredPosts.length === 0)}
+					   <div
+						   class="bg-white/80 backdrop-blur-sm p-12 border border-gray-200/50 rounded-xl text-center"
+					   >
+						   <div class="mb-4 text-6xl">📝</div>
+						   <h3 class="mb-2 font-semibold text-gray-700 text-xl">
+							   暂无符合条件的博客文章
+						   </h3>
+						   <p class="text-gray-500">换个关键词或标签试试吧！</p>
+					   </div>
+				   {/if}
+			   </div>
+		   </main>
 	</div>
 </div>
+<style>
+.blog-scroll-container {
+	height: 80vh;
+	min-height: 400px;
+	max-height: 90vh;
+	overflow-y: auto;
+	padding-right: 2px;
+}
+</style>

@@ -1,12 +1,24 @@
 <script lang="ts">
-	import { ArrowLeft } from "lucide-svelte";
+	import { ArrowLeft, Calendar, Clock, Tag } from "lucide-svelte";
 	import { goto } from "$app/navigation";
+	import { Avatar } from "$lib";
 
 	export let data;
 	$: post = data.post;
 
 	function goBack() {
 		goto("/blogs");
+	}
+
+	// 格式化日期
+	function formatDate(dateString: string) {
+		if (!dateString) return "";
+		const date = new Date(dateString);
+		return date.toLocaleDateString("zh-CN", {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
 	}
 </script>
 
@@ -17,56 +29,117 @@
 
 <div class="bg-gradient-to-br from-slate-50 to-blue-100 min-h-screen">
 	<div
-		class="flex flex-col justify-center items-center px-6 py-20 min-h-screen"
+		class="flex md:flex-row flex-col justify-center items-start gap-8 mx-auto px-6 py-20 max-w-5xl min-h-screen"
 	>
-		<!-- 返回按钮 -->
-		<div class="w-full max-w-4xl">
-			<button
-				on:click={goBack}
-				class="group flex items-center hover:bg-white/80 backdrop-blur-sm mb-8 p-3 border border-gray-200/50 rounded-lg transition-all duration-200"
+		<!-- 左侧栏 -->
+		<aside class="flex-shrink-0 mb-8 md:mb-0 w-full md:w-72">
+			<!-- 返回按钮 -->
+			<div class="mb-8">
+				<button
+					on:click={goBack}
+					class="group flex items-center hover:bg-white/80 backdrop-blur-sm p-3 border border-gray-200/50 rounded-lg w-full transition-all duration-200"
+				>
+					<ArrowLeft
+						class="mr-2 w-5 h-5 text-gray-600 transition-transform group-hover:-translate-x-1 duration-200"
+					/>
+					<span class="font-medium text-gray-700">返回博客列表</span>
+				</button>
+			</div>
+
+			<!-- 作者信息 -->
+			<div
+				class="flex flex-col items-center bg-white/80 shadow mb-8 p-6 rounded-xl"
 			>
-				<ArrowLeft
-					class="mr-2 w-5 h-5 text-gray-600 transition-transform group-hover:-translate-x-1 duration-200"
-				/>
-				<span class="font-medium text-gray-700">返回博客列表</span>
-			</button>
-		</div>
+				<Avatar />
+				<div class="mb-1 font-bold text-lg">KisameVanilla</div>
+				<div class="mb-2 text-gray-500 text-sm">博客作者</div>
+			</div>
 
-		<!-- 文章头部 -->
-		<header
-			class="bg-white/80 shadow-lg backdrop-blur-sm mb-8 p-8 border border-gray-200/50 rounded-xl w-full max-w-4xl"
-		>
-			<h1 class="mb-4 font-bold text-gray-900 text-4xl leading-tight">
-				{post.title}
-			</h1>
-			<p class="mb-6 text-gray-600 text-lg leading-relaxed">
-				{post.description}
-			</p>
-		</header>
+			<!-- 文章信息卡片 -->
+			<div class="bg-white/80 shadow-lg backdrop-blur-sm mb-8 p-6 border border-gray-200/50 rounded-xl">
+				<h1 class="mb-3 font-bold text-gray-900 text-xl leading-tight">
+					{post.title}
+				</h1>
+				<p class="mb-4 text-gray-600 text-sm leading-relaxed">
+					{post.description}
+				</p>
+				
+				<!-- 文章元数据 -->
+				{#if post.date || post.readTime}
+					<div class="space-y-2 mb-4 text-gray-500 text-xs">
+						{#if post.date}
+							<div class="flex items-center">
+								<Calendar class="mr-1 w-3 h-3" />
+								<span>{formatDate(post.date)}</span>
+							</div>
+						{/if}
+						{#if post.readTime}
+							<div class="flex items-center">
+								<Clock class="mr-1 w-3 h-3" />
+								<span>{post.readTime}</span>
+							</div>
+						{/if}
+					</div>
+				{/if}
 
-		<!-- 文章内容 - 渲染 Svelte 组件 -->
-		<div
-			class="bg-white/80 shadow-lg backdrop-blur-sm p-8 border border-gray-200/50 rounded-xl w-full max-w-4xl prose prose-lg prose-gray"
-		>
-			<svelte:component this={post.component} />
-		</div>
+				<!-- 标签 -->
+				{#if post.tags && post.tags.length > 0}
+					<div class="mb-4">
+						<div class="flex items-center mb-2 font-semibold text-gray-700 text-sm">
+							<Tag class="mr-1 w-3 h-3" />标签
+						</div>
+						<div class="flex flex-wrap gap-2">
+							{#each post.tags as tag}
+								<span class="bg-blue-50 px-2 py-1 rounded-md font-medium text-blue-600 text-xs">
+									{tag}
+								</span>
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
+		</aside>
 
-		<!-- 文章底部 -->
-		<footer class="mt-8 w-full max-w-4xl text-center">
-			<button
-				on:click={goBack}
-				class="group bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200"
-			>
-				<ArrowLeft
-					class="inline mr-2 w-4 h-4 transition-transform group-hover:-translate-x-1 duration-200"
-				/>
-				返回博客列表
-			</button>
-		</footer>
+		<!-- 右侧内容 -->
+		<main class="flex-1 mx-auto w-full max-w-3xl">
+			<div class="post-scroll-container">
+				<!-- 文章内容 - 渲染 Svelte 组件 -->
+				<div class="bg-white/80 shadow-lg backdrop-blur-sm p-8 border border-gray-200/50 rounded-xl prose prose-lg prose-gray">
+					<svelte:component this={post.component} />
+				</div>
+			</div>
+		</main>
 	</div>
 </div>
 
 <style>
+	/* 文章内容滚动容器 */
+	.post-scroll-container {
+		height: calc(100vh - 160px); /* 减去顶部和底部的padding */
+		min-height: 400px;
+		overflow-y: auto;
+		padding-right: 2px;
+	}
+
+	/* 移动端调整 */
+	@media (max-width: 768px) {
+		.post-scroll-container {
+			height: calc(100vh - 200px); /* 移动端给更多空间 */
+		}
+	}
+
+	/* 确保移动端布局正确 */
+	@media (max-width: 768px) {
+		:global(.md\\:flex-row) {
+			min-height: auto;
+		}
+	}
+
+	/* 隐藏文章内容中的重复元数据 */
+	:global(.prose header) {
+		display: none;
+	}
+
 	/* 自定义文章内容样式 */
 	:global(.prose h2) {
 		font-size: 1.5rem;

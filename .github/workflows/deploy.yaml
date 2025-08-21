@@ -1,8 +1,5 @@
 name: deploy
 on:
-  push:
-    paths:
-      - 'package.json'
   workflow_dispatch:
 
 jobs:

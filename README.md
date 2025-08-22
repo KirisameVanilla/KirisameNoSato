@@ -32,3 +32,9 @@
 - `src/`：源代码目录
 - `build/`：构建输出目录
 - `static/`：静态资源
+
+## 致谢
+
+- [Cloudfare](https://developers.cloudflare.com/)<br>For CI/CD
+- [gitattributes](https://github.com/gitattributes/gitattributes)<br>For gitattributes file
+- [Svelte](https://svelte.dev/)<br>For web app framework

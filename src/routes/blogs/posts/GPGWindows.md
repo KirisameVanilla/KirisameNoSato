@@ -55,7 +55,7 @@ gpg --list-secret-keys" />
 
 <CodeBlock code="gpg --armor --export YOUR_KEY_ID" />
 
-将输出结果复制，然后在 GitHub 设置中添加 GPG 密钥。
+将输出结果复制，然后在 [GitHub 设置](https://github.com/settings/keys) 中添加刚刚复制的 GPG 密钥，并在 *Vigilant mode* 中勾选 *Flag unsigned commits as unverified*。
 
 ### 5. 配置 Git 使用 GPG
 

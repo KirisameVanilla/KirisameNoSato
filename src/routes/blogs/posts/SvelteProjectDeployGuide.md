@@ -1,8 +1,8 @@
 ---
-title: "SvelteKit 项目生产环境部署指南"
-date: "2024-01-15"
+title: "Svelte 项目生产环境部署指南"
+date: "2025-08-18"
 readTime: "8 分钟"
-tags: ["SvelteKit", "部署", "Nginx", "Linux"]
+tags: ["Svelte", "部署", "Nginx", "Linux"]
 ---
 
 <script>
@@ -64,13 +64,13 @@ sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com`;
 
 <PostHeader {title} {date} {readTime} {tags} />
 
-SvelteKit 是一个出色的全栈 Web 框架，但在生产环境中正确部署需要一些配置技巧。本文将详细介绍如何在 Linux 服务器上使用 Nginx 部署 SvelteKit 应用，并配置 HTTPS 证书。
+Svelte 是一个出色的全栈 Web 框架，但在生产环境中正确部署需要一些配置技巧。本文将详细介绍如何在 Linux 服务器上使用 Nginx 部署 Svelte 应用，并配置 HTTPS 证书。
 
 ## 构建准备
 
 在部署之前，我们需要先在本地构建项目：
 
-<CodeBlock code={buildCommand} language="bash" title="构建 SvelteKit 项目" />
+<CodeBlock code={buildCommand} language="bash" title="构建 Svelte 项目" />
 
 > **提示**：构建完成后，所有静态文件都会生成在 `build/` 目录中。这就是我们需要上传到服务器的内容。
 
@@ -79,7 +79,7 @@ SvelteKit 是一个出色的全栈 Web 框架，但在生产环境中正确部�
 
 ### 基础环境要求
 
-部署 SvelteKit 应用需要以下基础环境：
+部署 Svelte 应用需要以下基础环境：
 
 - **Linux 服务器**（推荐 Ubuntu 20.04+）
 - **Nginx**：高性能的 Web 服务器

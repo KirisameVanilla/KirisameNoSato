@@ -41,7 +41,7 @@
 
 <div class="bg-gradient-to-br from-slate-50 to-blue-100 min-h-screen">
 	<div
-		class="flex md:flex-row flex-col justify-center items-start gap-8 mx-auto px-6 py-20 max-w-5xl min-h-screen"
+		class="flex md:flex-row flex-col justify-center items-start gap-8 mx-auto px-6 py-20 max-w-7xl min-h-screen"
 	>
 		<!-- 左侧栏 -->
 		<aside class="flex-shrink-0 mb-8 md:mb-0 w-full md:w-72">
@@ -93,7 +93,7 @@
 		</aside>
 
 		<!-- 右侧内容 -->
-		   <main class="flex-1 mx-auto w-full max-w-3xl">
+		   <main class="flex-1 mx-auto w-full max-w-5xl">
 			   <div class="blog-scroll-container">
 				   <div class="flex sm:flex-row flex-col sm:items-center gap-4 mb-8">
 					   <input

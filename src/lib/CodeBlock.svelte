@@ -52,6 +52,7 @@
     display: block;
     margin: 0;
     padding: 0.75rem;
+    padding-top: 2.5rem; /* 为复制按钮留出空间 */
     background-color: transparent;
     border-radius: 0;
     overflow-x: auto;
@@ -83,6 +84,7 @@
     cursor: pointer;
     backdrop-filter: blur(4px);
     transition: background-color 0.2s;
+    z-index: 10; /* 确保按钮在最上层 */
   }
   
   .not-prose .copy-button:hover {

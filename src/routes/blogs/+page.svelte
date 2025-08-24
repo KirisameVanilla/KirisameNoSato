@@ -98,13 +98,13 @@
 				   <div class="flex sm:flex-row flex-col sm:items-center gap-4 mb-8">
 					   <input
 						   type="text"
-						   class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 w-full sm:w-80"
+						   class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
 						   placeholder="搜索标题、描述或标签..."
 						   bind:value={search}
 					   />
 					   {#if selectedTag}
 						   <button
-							   class="bg-blue-100 ml-2 px-3 py-1 border border-blue-200 rounded font-medium text-blue-700 text-xs"
+							   class="bg-blue-100 ml-2 px-3 py-1 border border-blue-200 rounded max-w-full font-medium text-blue-700 text-xs"
 							   on:click={() => (selectedTag = null)}
 						   >
 							   清除标签: {selectedTag}
